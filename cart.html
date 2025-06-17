@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="cart.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet" />
+</head>
+
+<body>
+  <header class="navbar">
+    <a href="index.html">
+      <div class="logo">
+        <img src="Images/logo.svg" alt="Logo" />
+      </div>
+    </a>
+
+    <div class="search-bar">
+      <div class="search-container">
+        <input type="text" placeholder="What are you looking for?" />
+        <div class="select-category category-toggle">
+          <span class="label">Select Category</span>
+          <i class="fa-solid fa-angle-down arrow"></i>
+          <ul class="category-dropdown">
+            <li class="category-item">Select Category</li>
+            <li class="category-item">Toys & Games</li>
+            <li class="category-item">Dresess</li>
+            <li class="category-item">Hats & Scarf</li>
+            <li class="category-item">Shoes & Socks</li>
+            <li class="category-item">Sweaters</li>
+            <li class="category-item">T-shirts</li>
+          </ul>
+        </div>
+        <i class="fa-solid fa-magnifying-glass search-icon"></i>
+      </div>
+    </div>
+    <div class="contact">
+      <div class="phone">
+        <i class="fa-solid fa-phone"></i>
+        <span>+73 099 321 312</span>
+      </div>
+    </div>
+  </header>
+
+
+  <nav class="menu">
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li class="dropdown">
+        <a href="#">Shop <i class="fa-solid fa-angle-down"></i></a>
+        <ul class="dropdown-menu">
+          <li><a href="#">Baby Products</a></li>
+          <li><a href="#">Toys</a></li>
+          <li><a href="#">Clothes</a></li>
+          <li><a href="#">Accessories</a></li>
+        </ul>
+      </li>
+      <li><a href="#">News</a></li>
+      <li><a href="#">About Us</a></li>
+      <li><a href="#">Contact Us</a></li>
+    </ul>
+
+    <div class="icons">
+      <a href="#"><i class="fa-regular fa-user"></i> Login</a>
+      <a href="#"><i class="fa-solid fa-arrows-rotate"></i> Compare</a>
+      <a href="#"><i class="fa-regular fa-heart"></i> Wishlist</a>
+      <a href="#"><i class="fa-solid fa-bag-shopping"></i> $0.00</a>
+    </div>
+  </nav>
+
+
+
+  <div class="cart-container">
+    <div class="cart-main">
+      <h2>Cart</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Product</th>
+            <th>Quantity</th>
+            <th>Subtotal</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="cart-table-body">
+        </tbody>
+      </table>
+
+      <div class="actions">
+        <input type="text" placeholder="Coupon code" />
+        <button class="btn-dark">Apply coupon</button>
+        <button class="btn-gray" id="update-btn" disabled>Update cart</button>
+      </div>
+    </div>
+
+    <div class="cart-sidebar">
+      <h3>Cart totals</h3>
+      <div class="totals">
+        <div class="line">
+          <span>Subtotal</span>
+          <span id="subtotal">$0.00</span>
+        </div>
+        <div class="line">
+          <strong>Total</strong>
+          <strong id="total">$0.00</strong>
+        </div>
+        <p id="shipping-msg">Add $300.00 more to get free shipping!</p>
+        <div class="shipping-bar-container">
+          <div class="shipping-bar" id="shipping-bar"></div>
+        </div>
+      </div>
+      <button class="btn-dark full-width" id="checkout-btn">Proceed to checkout</button>
+    </div>
+  </div>
+
+
+  <div class="features-bar">
+    <div class="feature">
+      <i class="fa-solid icon fa-credit-card"></i>
+      <h4>Secure Payments</h4>
+      <p>Tellus gravida ipsum aut facilisis tempus at et aliquam estsem.</p>
+    </div>
+    <div class="feature">
+      <i class="fa-solid icon fa-truck"></i>
+      <h4>Free Shipping</h4>
+      <p>Non pulvinar aenean ultrices lectus vitae imperdiet aeu.</p>
+    </div>
+    <div class="feature">
+      <i class="fa-solid icon fa-phone"></i>
+      <h4>24/7 Support</h4>
+      <p>Nullam iaculis vestibulum arcu id urnain pellentesque quis.</p>
+    </div>
+    <div class="feature">
+      <i class="fa-solid icon fa-gift"></i>
+      <h4>Gifts & Sales</h4>
+      <p>Aliquet ullamcorper leo mi vel sit pretium euismod eget libero.</p>
+    </div>
+  </div>
+
+
+  <section class="header-section">
+    <div class="header-text">
+      <img src="Images/logo.svg" alt="" srcset="">
+      <p class="header-description">
+        Discover our unique assortment of children's apparel and playthings in preparation for the upcoming fall season.
+      </p>
+    </div>
+    <div class="phone">
+      <i class="fa-solid fa-phone"></i>
+      <span>+73 099 321 312</span>
+    </div>
+  </section>
+
+  <hr>
+
+  <section class="main-section">
+    <div class="info-lists">
+      <div>
+        <h2>Shop</h2>
+        <ul>
+          <li><a href="#">Dresses & Suits</a></li>
+          <li><a href="#">Shoes & Socks</a></li>
+          <li><a href="#">Blouses & T-Shirts</a></li>
+          <li><a href="#">Toys & Games</a></li>
+          <li><a href="#">Caps & Accessories</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h2>Company</h2>
+        <ul>
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">FAQ</a></li>
+          <li><a href="#">Our News</a></li>
+          <li><a href="#">Our Story</a></li>
+          <li><a href="#">Contact Us</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h2>Useful</h2>
+        <ul>
+          <li><a href="#">Site Map</a></li>
+          <li><a href="#">Affiliate Area</a></li>
+          <li><a href="#">Delivery</a></li>
+          <li><a href="#">Locations</a></li>
+          <li><a href="#">Collaboration</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h2>Legal</h2>
+        <ul>
+          <li><a href="#">Shipping Policy</a></li>
+          <li><a href="#">Returns & Exchanges</a></li>
+          <li><a href="#">Terms of Use</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Cookies Policy</a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <hr>
+
+  <section class="footer-section">
+    <p class="copyright">Copyright © 2025 - WordPress Theme by CreativeThemes</p>
+  </section>
+
+  <script src="cart.js"></script>
+
+</body>
+
+</html>

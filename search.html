@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Search Results</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
+  <style>
+    /* Optional styling for search results */
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background-color: #f9f9f9;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    #searchResults {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 20px;
+    }
+
+    main {
+      padding: 0 70px;
+    }
+
+    .product-card {
+      background-color: white;
+      border-radius: 8px;
+      padding: 15px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    .product-card img {
+      width: 100%;
+      max-width: 150px;
+      height: auto;
+      margin-bottom: 10px;
+    }
+
+    .product-card h3 {
+      font-size: 16px;
+      margin: 10px 0 5px;
+    }
+
+    .product-card p {
+      margin: 4px 0;
+    }
+  </style>
+</head>
+
+<body>
+  <header class="navbar">
+    <a href="index.html">
+      <div class="logo">
+        <img src="Images/logo.svg" alt="Logo" />
+      </div>
+    </a>
+
+    <div class="search-bar">
+      <div class="search-container">
+        <input type="text" id="searchInput" placeholder="What are you looking for?" />
+        <div class="select-category category-toggle">
+          <span class="label" id="categoryLabel">Select Category</span>
+          <i class="fa-solid fa-angle-down arrow"></i>
+          <ul class="category-dropdown">
+            <li class="category-item">Select Category</li>
+            <li class="category-item">Toys & Games</li>
+            <li class="category-item">Dresess</li>
+            <li class="category-item">Hats & Scarf</li>
+            <li class="category-item">Shoes & Socks</li>
+            <li class="category-item">Sweaters</li>
+            <li class="category-item">T-shirts</li>
+          </ul>
+        </div>
+        <i class="fa-solid fa-magnifying-glass search-icon" id="searchIcon"></i>
+      </div>
+    </div>
+    <div class="contact">
+      <div class="phone">
+        <i class="fa-solid fa-phone"></i>
+        <span>+73 099 321 312</span>
+      </div>
+    </div>
+  </header>
+
+
+  <nav class="menu">
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li class="dropdown">
+        <a href="#">Shop <i class="fa-solid fa-angle-down"></i></a>
+        <ul class="dropdown-menu">
+          <li><a href="#">Baby Products</a></li>
+          <li><a href="#">Toys</a></li>
+          <li><a href="#">Clothes</a></li>
+          <li><a href="#">Accessories</a></li>
+        </ul>
+      </li>
+      <li><a href="#">News</a></li>
+      <li><a href="#">About Us</a></li>
+      <li><a href="#">Contact Us</a></li>
+    </ul>
+
+    <div class="icons">
+      <a href="#"><i class="fa-regular fa-user"></i> Login</a>
+      <a href="#"><i class="fa-solid fa-arrows-rotate"></i> Compare</a>
+      <a href="#"><i class="fa-regular fa-heart"></i> Wishlist</a>
+      <a href="#"><i class="fa-solid fa-bag-shopping"></i> $0.00</a>
+    </div>
+  </nav>
+
+
+
+  <main>
+    <h2 id="searchTitle" style="padding: 20px;"></h2>
+    <section class="products-section" id="products-container">
+      <!-- JS yahan product cards inject karega -->
+    </section>
+  </main>
+
+  <div class="product-modal" id="productModal">
+    <div class="modal-content">
+      <span class="close-btn" id="closeModal">&times;</span>
+      <div class="modal-left">
+        <img id="modalImage" src="" alt="Product Image">
+      </div>
+      <div class="modal-right">
+        <h2 id="modalTitle">Product Title</h2>
+        <p id="modalPrice">$0.00</p>
+        <p id="modalDesc">Platea habitasse maecenas; suspendisse sociosqu ex lacinia euismod. Facilisi phasellus
+          scelerisque sociosqu per commodo metus. Et sociosqu consectetur nisl etiam quam dapibus vivamus. Class fames
+          pulvinar lobortis ante curae varius lobortis!<br><br>Dis consequat ullamcorper primis vitae imperdiet
+          facilisi. Platea cras tristique pellentesque neque laoreet senectus.<br><br>Dolor pulvinar sed vel iaculis
+          accumsan risus eu blandit. Adipiscing hac cubilia aliquam mattis vulputate adipiscing viverra.</p>
+        <div class="quantity">
+          <input type="number" value="1" min="1">
+          <button class="btn-add-cart">Add to cart</button>
+        </div>
+        <p class="category">Category: <span id="modalCategory">Category</span></p>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="cart-sidebar" id="cartSidebar">
+    <div class="cart-header">
+      <h2>Shopping Cart</h2>
+      <button class="cart-close" id="closeCart"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+
+    <div class="cart-items" id="cartItems">
+    </div>
+
+    <div class="cart-summary">
+      <div class="subtotal-row">
+        <span>SUBTOTAL:</span>
+        <span id="cartSubtotal">$0.00</span>
+      </div>
+      <p class="shipping-text" id="shippingText">Add $300.00 more to get free shipping!</p>
+      <div class="shipping-bar">
+        <div class="shipping-progress" id="shippingProgress"></div>
+      </div>
+
+      <div class="cart-buttons">
+        <button class="view-cart-btn">View cart</button>
+        <button class="checkout-btn">Checkout</button>
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class="features-bar">
+    <div class="feature">
+      <i class="fa-solid icon fa-credit-card"></i>
+      <h4>Secure Payments</h4>
+      <p>Tellus gravida ipsum aut facilisis tempus at et aliquam estsem.</p>
+    </div>
+    <div class="feature">
+      <i class="fa-solid icon fa-truck"></i>
+      <h4>Free Shipping</h4>
+      <p>Non pulvinar aenean ultrices lectus vitae imperdiet aeu.</p>
+    </div>
+    <div class="feature">
+      <i class="fa-solid icon fa-phone"></i>
+      <h4>24/7 Support</h4>
+      <p>Nullam iaculis vestibulum arcu id urnain pellentesque quis.</p>
+    </div>
+    <div class="feature">
+      <i class="fa-solid icon fa-gift"></i>
+      <h4>Gifts & Sales</h4>
+      <p>Aliquet ullamcorper leo mi vel sit pretium euismod eget libero.</p>
+    </div>
+  </div>
+
+
+  <section class="header-section">
+    <div class="header-text">
+      <img src="Images/logo.svg" alt="" srcset="">
+      <p class="header-description">
+        Discover our unique assortment of children's apparel and playthings in preparation for the upcoming fall season.
+      </p>
+    </div>
+    <div class="phone">
+      <i class="fa-solid fa-phone"></i>
+      <span>+73 099 321 312</span>
+    </div>
+  </section>
+
+  <hr>
+
+  <section class="main-section">
+    <div class="info-lists">
+      <div>
+        <h2>Shop</h2>
+        <ul>
+          <li><a href="#">Dresses & Suits</a></li>
+          <li><a href="#">Shoes & Socks</a></li>
+          <li><a href="#">Blouses & T-Shirts</a></li>
+          <li><a href="#">Toys & Games</a></li>
+          <li><a href="#">Caps & Accessories</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h2>Company</h2>
+        <ul>
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">FAQ</a></li>
+          <li><a href="#">Our News</a></li>
+          <li><a href="#">Our Story</a></li>
+          <li><a href="#">Contact Us</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h2>Useful</h2>
+        <ul>
+          <li><a href="#">Site Map</a></li>
+          <li><a href="#">Affiliate Area</a></li>
+          <li><a href="#">Delivery</a></li>
+          <li><a href="#">Locations</a></li>
+          <li><a href="#">Collaboration</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h2>Legal</h2>
+        <ul>
+          <li><a href="#">Shipping Policy</a></li>
+          <li><a href="#">Returns & Exchanges</a></li>
+          <li><a href="#">Terms of Use</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Cookies Policy</a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <hr>
+
+  <section class="footer-section">
+    <p class="copyright">Copyright © 2025 - WordPress Theme by CreativeThemes</p>
+  </section>
+  <script src="search.js" defer></script>
+  <script src="script.js" defer></script>
+
+
+
+</body>
+
+</html>

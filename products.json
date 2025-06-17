@@ -1,0 +1,58 @@
+[
+  {
+    "id": 1,
+    "title": "Fames Primis",
+    "category": "Sweaters",
+    "price": 35.00,
+    "image": "Images/Fames Primis.png"
+  },
+  {
+    "id": 2,
+    "title": "Justo Finibus",
+    "category": "Dresses",
+    "price": 35.00,
+    "image": "Images/Justo Finibus.png"
+  },
+  {
+    "id": 3,
+    "title": "Montes Dictum",
+    "category": "Hats & Scarfs",
+    "price": 15.00,
+    "image": "Images/Montes Dictum.png"
+  },
+  {
+    "id": 4,
+    "title": "Morbi Dapibus",
+    "category": "Shoes & Socks",
+    "price": 45.00,
+    "image": "Images/Morbi Dapibus.png"
+  },
+  {
+    "id": 5,
+    "title": "Porta Primis",
+    "category": "Toys & Games",
+    "price": 18.00,
+    "image": "Images/Porta Primis.png"
+  },
+  {
+    "id": 6,
+    "title": "Quam Venenatis",
+    "category": "T-shirts",
+    "price": 25.00,
+    "image": "Images/Quam Venenatis.png"
+  },
+  {
+    "id": 7,
+    "title": "Tellus Conubia",
+    "category": "Toys & Games",
+    "price": 20.00,
+    "image": "Images/Tellus Conubia.png"
+  },
+  {
+    "id": 8,
+    "title": "Velit Eleifend",
+    "category": "Toys & Games",
+    "price": 15.00,
+    "image": "Images/Velit Eleifend.png"
+  }
+]
