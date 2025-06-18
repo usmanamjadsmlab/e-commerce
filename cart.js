@@ -1,5 +1,13 @@
 // -------- Load Cart --------
-let cart = JSON.parse(localStorage.getItem("cart")) || []; // FIXED: used "cart"
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+// Agar selectedCartItem mila hai to usi ko cart me dalo
+const selectedItem = JSON.parse(localStorage.getItem("selectedCartItem"));
+if (selectedItem) {
+  cart = [selectedItem]; // Sirf usi item ko rakhna hai
+  localStorage.setItem("cart", JSON.stringify(cart)); // LocalStorage me update karo
+  localStorage.removeItem("selectedCartItem"); // Use once only
+}
 
 // -------- DOM Elements --------
 const cartTableBody = document.getElementById("cart-table-body");

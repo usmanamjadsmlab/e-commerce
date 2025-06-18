@@ -5,9 +5,8 @@ const freeShippingThreshold = 300;
 // Jab page load ho
 document.addEventListener("DOMContentLoaded", () => {
   // PAGE LOAD PE CART CLEAR KAR DO
-  localStorage.removeItem("cart"); // Cart localStorage se hata do
-
-  cart = []; // Cart array bhi empty karo
+  localStorage.removeItem("cart");
+  cart = [];
 
   const isSearchPage = window.location.pathname.includes("search.html");
 
@@ -19,12 +18,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   bindCloseEvents();
   bindNavbarEvents();
-
-  // Sidebar ko empty karo taake purana cart dikhe na
   updateCart();
 });
-
-// Baaki aapka pura code waise hi rahega jaise pehle tha
 
 // Index ke liye tamam products load karo
 async function loadAllProducts() {
@@ -116,9 +111,20 @@ function bindProductEvents() {
   document.querySelectorAll(".add-cart").forEach((button) => {
     button.addEventListener("click", function (e) {
       e.preventDefault();
+
       const title = this.dataset.title;
       const price = parseFloat(this.dataset.price);
       const image = this.dataset.image;
+
+      // Agar button pe "View cart" likha ho to redirect
+      if (this.textContent === "View cart") {
+        const singleItem = { title, price, qty: 1, imgSrc: image };
+        localStorage.setItem("selectedCartItem", JSON.stringify(singleItem));
+        localStorage.removeItem("cart"); // clear cart
+        window.location.href = "cart.html";
+        return;
+      }
+
       addToCart(title, price, image);
       this.textContent = "View cart";
     });
@@ -131,9 +137,7 @@ function bindProductEvents() {
       if (product) {
         document.getElementById("modalImage").src = product.image;
         document.getElementById("modalTitle").innerText = product.title;
-        document.getElementById(
-          "modalPrice"
-        ).innerText = `$${product.price.toFixed(2)}`;
+        document.getElementById("modalPrice").innerText = `$${product.price.toFixed(2)}`;
         document.getElementById("modalCategory").innerText = product.category;
         document.getElementById("productModal").style.display = "flex";
       }
@@ -143,7 +147,6 @@ function bindProductEvents() {
 
 // Cart me item add karo, localStorage aur UI update karo
 function addToCart(title, price, image) {
-  // Cart ko localStorage se phir se load karo taake updated ho har waqt
   const savedCart = JSON.parse(localStorage.getItem("cart"));
   cart = savedCart && Array.isArray(savedCart) ? savedCart : [];
 
@@ -156,7 +159,6 @@ function addToCart(title, price, image) {
   localStorage.setItem("cart", JSON.stringify(cart));
   updateCart();
 
-  // Cart sidebar open karo
   document.getElementById("cartSidebar").classList.add("active");
 }
 
@@ -167,7 +169,6 @@ function updateCart() {
 
   if (!cartItemsContainer || !cartSubtotal) return;
 
-  // Pura container clear karo pehle
   cartItemsContainer.innerHTML = "";
   let subtotal = 0;
 
@@ -180,9 +181,7 @@ function updateCart() {
       <div class="cart-item-info">
         <h4>${item.title}</h4>
         <div class="cart-item-qty">
-          <input type="number" value="${
-            item.qty
-          }" min="1" data-index="${index}">
+          <input type="number" value="${item.qty}" min="1" data-index="${index}">
           <span>× $${item.price.toFixed(2)}</span>
         </div>
       </div>
@@ -192,10 +191,8 @@ function updateCart() {
   });
 
   cartSubtotal.textContent = `$${subtotal.toFixed(2)}`;
-
   updateShipping(subtotal);
 
-  // Quantity change event (input box)
   document.querySelectorAll(".cart-item-qty input").forEach((input) => {
     input.addEventListener("change", (e) => {
       const index = e.target.dataset.index;
@@ -203,7 +200,7 @@ function updateCart() {
       if (newQty > 0) {
         cart[index].qty = newQty;
       } else {
-        cart[index].qty = 1; // minimum 1
+        cart[index].qty = 1;
         e.target.value = 1;
       }
       localStorage.setItem("cart", JSON.stringify(cart));
@@ -211,7 +208,6 @@ function updateCart() {
     });
   });
 
-  // Remove button event
   document.querySelectorAll(".cart-item-remove").forEach((btn) => {
     btn.addEventListener("click", (e) => {
       const index = e.currentTarget.dataset.index;
@@ -313,12 +309,8 @@ function runSearch() {
   const selectedCategory =
     category && category.toLowerCase() !== "select category" ? category : "All";
 
-  // Search data save karo
   localStorage.setItem("searchQuery", query);
   localStorage.setItem("selectedCategory", selectedCategory);
 
-  // Cart ko yahan clear mat karo, warna purana cart chala jayega
-
-  // Search page pe redirect karo
   window.location.href = "search.html";
 }
