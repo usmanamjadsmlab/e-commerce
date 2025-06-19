@@ -1116,3 +1116,34 @@ h2 {
     font-size: 0.9em;
     padding: 20px;
 }
+
+.product-icons .fa-heart.active-heart {
+    background-color: #fdb016;
+    color: white;
+}
+
+.wishlist-link {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.wishlist-link i {
+    position: relative;
+    font-size: 20px;
+}
+
+#wishlist-count {
+    position: absolute;
+    top: -10px;
+    left: 8px;
+    background-color: #ffc107;
+    color: white;
+    font-size: 8px;
+    font-weight: bold;
+    border-radius: 50%;
+    padding: 4px 6px;
+    display: none;
+    line-height: 1;
+}

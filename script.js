@@ -1,5 +1,6 @@
 let allProducts = [];
 let cart = []; // Cart localStorage se load hoga on page load
+let wishlist = []; // Wishlist memory only
 const freeShippingThreshold = 300;
 
 // Jab page load ho
@@ -7,6 +8,9 @@ document.addEventListener("DOMContentLoaded", () => {
   // PAGE LOAD PE CART CLEAR KAR DO
   localStorage.removeItem("cart");
   cart = [];
+
+  wishlist = []; // PAGE LOAD PE WISHLIST CLEAR KAR DO
+  updateWishlistCount(); // COUNT RESET KARO
 
   const isSearchPage = window.location.pathname.includes("search.html");
 
@@ -85,7 +89,7 @@ function renderProductCard(product) {
   card.classList.add("product-card");
   card.innerHTML = `
     <div class="product-icons">
-      <i class="fas fa-heart"></i>
+      <i class="fas fa-heart wishlist-icon"></i>
       <i class="fas fa-random"></i>
       <i class="fas fa-eye eye-btn" data-id="${product.id}"></i>
     </div>
@@ -314,3 +318,36 @@ function runSearch() {
 
   window.location.href = "search.html";
 }
+
+// ---------------- WISHLIST FEATURE ----------------
+document.addEventListener("click", function (e) {
+  if (e.target.classList.contains("fa-heart")) {
+    const heartIcon = e.target;
+    const card = heartIcon.closest(".product-card");
+    const title = card.querySelector(".product-title").textContent.trim();
+
+    heartIcon.classList.toggle("active-heart");
+
+    if (heartIcon.classList.contains("active-heart")) {
+      wishlist.push(title);
+    } else {
+      wishlist = wishlist.filter(item => item !== title);
+    }
+
+    updateWishlistCount();
+  }
+});
+
+function updateWishlistCount() {
+  const countEl = document.getElementById("wishlist-count");
+  if (countEl) {
+    if (wishlist.length > 0) {
+      countEl.textContent = wishlist.length;
+      countEl.style.display = "inline-block";
+    } else {
+      countEl.style.display = "none";
+    }
+  }
+}
+
+
